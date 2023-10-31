@@ -8,7 +8,6 @@ module.exports = {
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "build"),
-    // publicPath: "/shell/",
   },
   module: {
     rules: [
@@ -36,6 +35,15 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./index-template.html",
+    }),
+    new ModuleFederationPlugin({
+      name: "app1",
+      library: { type: "var", name: "app1" },
+      filename: "remoteEntry.js",
+      exposes: {
+        "./RedButton": "./src/RedButton.tsx",
+      },
+      shared: ["react", "react-dom"],
     }),
   ],
   devServer: {
