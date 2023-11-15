@@ -40,9 +40,9 @@ module.exports = {
       name: "shell",
       library: { type: "var", name: "shell" },
       filename: "remoteEntry.js",
-      remotes: {
-        app1: "app1",
-      },
+      // remotes: {
+      //   app1: "app1",
+      // },
       shared: ["react", "react-dom"],
     }),
   ],
