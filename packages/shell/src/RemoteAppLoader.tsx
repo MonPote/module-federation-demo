@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const appAUrl = "http://localhost:3001/remoteEntry.js";
 
-// what is app1 ?
+// Q for team : what is app1 ?
 
 // Fetch Remote A dynamically:
 const fetchRemoteA = (resolve) => {
