@@ -13,25 +13,11 @@ const fetchRemoteA = (resolve) => {
 
   // When the script is loaded we need to resolve the promise back to Module Federation
   script.onload = () => {
-    // The script is now loaded on window using the name defined within the remote
-    const module = {
-      get: (request) => window.app1.get(request),
-      init: (arg) => {
-        try {
-          return window.app1.init(arg);
-        } catch (e) {
-          console.log("Remote A has already been loaded");
-        }
-      },
-    };
-    resolve(module);
+    resolve();
   };
   // Lastly we inject the script tag into the document's head to trigger the script load
   document.head.appendChild(script);
 };
-new Promise((resolve) => {
-  fetchRemoteA(resolve);
-});
 
 export const RemoteAppLoader = (props) => {
   const [hasLoadRemoteScript, setHasLoadRemoteScript] = useState(false);
@@ -41,7 +27,7 @@ export const RemoteAppLoader = (props) => {
         console.log("finished loading", module);
         setHasLoadRemoteScript(true);
       });
-    }, 2000);
+    }, 500);
   }, []);
 
   if (!hasLoadRemoteScript) {

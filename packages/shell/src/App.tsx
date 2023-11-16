@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { RemoteAppLoader } from "./RemoteAppLoader";
 import { FederatedButton } from "./FederatedComponent";
-// import RedButton from "app1/RedButton";
-
-// what is app1 ?
-// what is './RedButton ?
+import { Provider } from "./Provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function App() {
-  useEffect(() => {
-    // loadModule();
-  }, []);
+  const queryClient = new QueryClient();
 
-  // console.log("RedButton", RedButton);
   return (
     <RemoteAppLoader>
-      <div>
-        Shell-ui
-        <FederatedButton />
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <Provider>
+          <div>
+            Shell-ui
+            <FederatedButton />
+          </div>
+        </Provider>
+      </QueryClientProvider>
     </RemoteAppLoader>
   );
 }

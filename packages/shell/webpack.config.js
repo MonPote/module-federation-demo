@@ -44,6 +44,9 @@ module.exports = {
       //   app1: "app1",
       // },
       shared: ["react", "react-dom"],
+      exposes: {
+        "./hooks": "./src/hooks.tsx",
+      },
     }),
   ],
   devServer: {
